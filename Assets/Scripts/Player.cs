@@ -13,7 +13,7 @@ public class Player : MonoBehaviour {
     private Rigidbody _rigidbody;
     private bool _jump;
     private bool _jumpon;
-
+  
 	void Start () {
         _rigidbody = GetComponent<Rigidbody>();
 	}
@@ -37,6 +37,8 @@ public class Player : MonoBehaviour {
         else {
             JumpMoving();
         }
+
+        
     }
 
     private void Moving() {
@@ -73,6 +75,12 @@ public class Player : MonoBehaviour {
         if(tag == "Ground")
             _jumpon = false;
 
+        if (tag == "Water")
+            _movespeed = 0;
+
+        if (_movespeed == 0 && _jumpon == true) {
+            Debug.Log("die");
+        }
     }
 
     private void OnCollisionExit(Collision other)
@@ -82,5 +90,8 @@ public class Player : MonoBehaviour {
 
         if(tag == "Ground")
             _jumpon = true;
+
+        else if (tag == "Water")
+            _movespeed = 10f;
     }
 }

@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class Water : MonoBehaviour {
 
-	// Use this for initialization
+
+
 	void Start () {
 		
 	}
 	
-	// Update is called once per frame
+
 	void Update () {
 		
 	}
+
+    private void OnCollisionEnter(Collision other)
+    {
+        string _player = other.collider.tag;
+
+        if (_player == "Player") {
+            Debug.Log("water");
+        }
+
+    }
 }
