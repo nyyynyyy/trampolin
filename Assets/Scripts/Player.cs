@@ -7,11 +7,11 @@ public class Player : MonoBehaviour {
     public float _movespeed = 10f;
     public float _turnspeed = 180f;
     public float _jumphigh = 500f;
+    public float _move;
+    public float _rotate;
+    public bool _jump;
 
-    private float _move;
-    private float _rotate;
     private Rigidbody _rigidbody;
-    private bool _jump;
     private bool _jumpon;
   
 	void Start () {
@@ -25,20 +25,19 @@ public class Player : MonoBehaviour {
 	}
 
     private void FixedUpdate() {
-        
+
         Turning();
         if (_jumpon == false) {
             Moving();
             if (_jump == true)
             {
                 Jumping();
+                _jump = false;
             }
         }
         else {
             JumpMoving();
         }
-
-        
     }
 
     private void Moving() {
