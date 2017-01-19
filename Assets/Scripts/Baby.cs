@@ -58,13 +58,13 @@ public class Baby : MonoBehaviour
 
         foreach (GameObject finish in _coursePoint)
         {
-            yield return StartCoroutine(GoToCourse(finish.transform.position));
+            yield return StartCoroutine(GoToFinish(finish.transform.position));
         }
 
         StartCoroutine(LoopCourse());
     }
 
-    private IEnumerator GoToCourse(Vector3 finish)
+    private IEnumerator GoToFinish(Vector3 finish)
     {
         yield return StartCoroutine(TurnToAngle(finish));
 
@@ -143,5 +143,9 @@ public class Baby : MonoBehaviour
         transform.position = _coursePoint[index].transform.position;
     }
 
-    
+    public void DropCandy(Vector3 candy)
+    {
+        StopAllCoroutines();
+        StartCoroutine(GoToFinish(candy));
+    }
 }
