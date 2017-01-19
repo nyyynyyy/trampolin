@@ -60,6 +60,7 @@ public class MoveJoystick : MonoBehaviour {
                 _joyposition.position = _clickjoyposition;
                 _wsposition.position = _mouseposition;
                 _mousedown = true;
+
                 if (_joyposition.position.y < _wsposition.position.y) {
                     _playermove._move = 1;
                 }
