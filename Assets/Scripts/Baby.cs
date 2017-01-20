@@ -5,8 +5,18 @@ using UnityEngine;
 public class Baby : MonoBehaviour
 {
 
-    public float _moveSpeed;
+    [Header("Course")]
     public GameObject[] _coursePoint;
+
+    [Header("Player")]
+    public GameObject _player;
+
+    [Header("State")]
+    public float _viewingAngle;
+    public float _viewingDistance;
+
+    public float _moveSpeed;
+
 
     private Rigidbody _rigid;
 
@@ -23,11 +33,20 @@ public class Baby : MonoBehaviour
         MoveCourse(0);
         SetAngle(0);
         StartCoroutine(LoopCourse());
+        StartCoroutine(Eye());
     }
 
     void Update()
     {
         DebugCourse();
+       // DebugViewing();
+    }
+
+    private IEnumerator Eye()
+    {
+        SeePlayer();
+        yield return null;
+        StartCoroutine(Eye());
     }
 
     private void DebugCourse()
@@ -38,6 +57,14 @@ public class Baby : MonoBehaviour
             Vector3 finish = _coursePoint[i != _coursePoint.Length - 1 ? i + 1 : 0].transform.position;
             Debug.DrawRay(start, finish - start, Color.red);
         }
+    }
+
+    private void DebugViewing()
+    {
+        Vector3 right = transform.forward * _viewingDistance;
+        Vector3 left = transform.right * _viewingDistance; 
+        Debug.DrawRay(transform.position, right, Color.blue);
+        Debug.DrawRay(transform.position, left, Color.blue);
     }
 
     /*
@@ -143,9 +170,26 @@ public class Baby : MonoBehaviour
         transform.position = _coursePoint[index].transform.position;
     }
 
-    public void DropCandy(Vector3 candy)
+    private void SeePlayer()
+    {
+        float disPlayer = Vector3.Distance(transform.position, _player.transform.position);
+
+        if (disPlayer > _viewingDistance) return;
+
+        Vector3 arrowVector = _player.transform.position - transform.position;
+
+        float myAngle = GetAngle();
+        float playerAngle = Mathf.Atan2(arrowVector.x, arrowVector.z) * Mathf.Rad2Deg;
+        float angleDis = Mathf.Abs(playerAngle - myAngle);
+
+        if (angleDis > _viewingAngle * 0.5f) return;
+
+        GoLocation(_player.transform.position);
+    }
+
+    public void GoLocation(Vector3 location)
     {
         StopAllCoroutines();
-        StartCoroutine(GoToFinish(candy));
+        StartCoroutine(GoToFinish(location));
     }
 }
