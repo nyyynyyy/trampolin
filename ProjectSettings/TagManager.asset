@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Ground
   - Baby
+  - Water
+  - Wall
+  - Desk
+  - Trampolin
   layers:
   - Default
   - TransparentFX

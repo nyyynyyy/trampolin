@@ -10,7 +10,7 @@ public class Candy : MonoBehaviour {
     {
         if(other.collider.tag == "Ground")
         {
-            _baby.DropCandy(transform.position);
+            _baby.GoLocation(transform.position);
             Debug.Log("CALL BABY : " + transform.position);
         }
 
