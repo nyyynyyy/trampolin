@@ -39,7 +39,7 @@ public class Baby : MonoBehaviour
     void Update()
     {
         DebugCourse();
-       // DebugViewing();
+        DebugViewing();
     }
 
     private IEnumerator Eye()
@@ -61,9 +61,20 @@ public class Baby : MonoBehaviour
 
     private void DebugViewing()
     {
-        Vector3 right = transform.forward * _viewingDistance;
-        Vector3 left = transform.right * _viewingDistance; 
-        Debug.DrawRay(transform.position, right, Color.blue);
+        float angleR = (90 - _viewingAngle * 0.5f - GetAngle()) * Mathf.Deg2Rad;
+        float angleL = (90 - _viewingAngle * -0.5f - GetAngle()) * Mathf.Deg2Rad;
+
+        float cosR = Mathf.Cos(angleR);
+        float cosL = Mathf.Cos(angleL);
+
+        float sinR = Mathf.Sin(angleR);
+        float sinL = Mathf.Sin(angleL);
+
+
+        Vector3 right = new Vector3(cosR, 0, sinR) * _viewingDistance;
+        Vector3 left = new Vector3(cosL, 0, sinL) * _viewingDistance; 
+
+        Debug.DrawRay(transform.position, right, Color.black);
         Debug.DrawRay(transform.position, left, Color.blue);
     }
 
@@ -174,6 +185,7 @@ public class Baby : MonoBehaviour
     {
         float disPlayer = Vector3.Distance(transform.position, _player.transform.position);
 
+        //Debug.Log(disPlayer);
         if (disPlayer > _viewingDistance) return;
 
         Vector3 arrowVector = _player.transform.position - transform.position;
@@ -182,14 +194,26 @@ public class Baby : MonoBehaviour
         float playerAngle = Mathf.Atan2(arrowVector.x, arrowVector.z) * Mathf.Rad2Deg;
         float angleDis = Mathf.Abs(playerAngle - myAngle);
 
+        TurnNumber(ref angleDis, 360f);
+       // Debug.Log(angleDis);
+
         if (angleDis > _viewingAngle * 0.5f) return;
 
-        GoLocation(_player.transform.position);
+        FindPlayer();
     }
 
-    public void GoLocation(Vector3 location)
+    public void FindPlayer()
     {
         StopAllCoroutines();
-        StartCoroutine(GoToFinish(location));
+        Debug.Log("Baby find player : " + _player.transform.position);
+        _moveSpeed *= 1.5f;
+        StartCoroutine(GoToFinish(_player.transform.position));
+    }
+
+    public void FindCandy(Vector3 candy)
+    {
+        StopAllCoroutines();
+        Debug.Log("Baby find candy : " + _player.transform.position);
+        StartCoroutine(GoToFinish(_player.transform.position));
     }
 }
