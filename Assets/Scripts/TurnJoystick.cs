@@ -4,92 +4,100 @@ using UnityEngine;
 
 public class TurnJoystick : MonoBehaviour {
 
-    public RectTransform _joyposition;
-    public RectTransform _adposition;
-    public RectTransform _canvasposition;
+    public RectTransform _joyPosition;
+    public RectTransform _stickPosition;
+    public RectTransform _canvasPosition;
     public Player _player;
 
-    private float _adwidth;
-    private Vector3 _firstjoyposition;
-    private Vector3 _clickjoyposition;
-    private bool _mousedown = false;
-    private bool _joyon;
-    private bool _playerjump = false;
+    private float _stickWidth;
+    private Vector3 _firstJoyPosition;
+    private Vector3 _clickJoyPosition;
 
     void Start () {
-        _firstjoyposition = _joyposition.position;
-        _adwidth = _adposition.rect.width;
-        GetComponent("Player");
+        _firstJoyPosition = _joyPosition.position;
+        _stickWidth = _stickPosition.rect.width;
     }
-	
-	void Update () {
-        Vector3 _mouseposition = Input.mousePosition;
 
-		if(Input.GetMouseButtonDown(0)) {
-            _clickjoyposition = _mouseposition;
-            if (_clickjoyposition.x > _canvasposition.position.x && _clickjoyposition.y < _canvasposition.position.y)
+    void Update()
+    {
+        Vector3 mousePosition = Input.mousePosition;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            _clickJoyPosition = mousePosition;
+            if (_clickJoyPosition.x > _canvasPosition.position.x && _clickJoyPosition.y < _canvasPosition.position.y)
             {
-                _playerjump = true;  
-            }
-        }
-        
-        if(_playerjump == true) {
-            Debug.Log("jump");
-            _player._jump = true;
-            _playerjump = false;
-        }
-            
-
-        if (_clickjoyposition.x < _canvasposition.position.x || _clickjoyposition.y < _canvasposition.position.y) {
-            _mouseposition = _firstjoyposition;
-            _joyon = false;
-            _mousedown = false;
-        }
-        else {
-            _joyon = true;
-        }
-
-        if (_joyon == true && _mousedown == true) {
-
-            _mouseposition = new Vector3(Input.mousePosition.x, _clickjoyposition.y);
-
-            if (_mouseposition.x - _clickjoyposition.x >= _adwidth / 2)
-            {
-                _mouseposition.x = _clickjoyposition.x + _adwidth / 2;
-            }
-            else if (_mouseposition.x - _clickjoyposition.x <= _adwidth / -2)
-            {
-                _mouseposition.x = _clickjoyposition.x + _adwidth / -2;
+                Jump();
+                return;
             }
         }
 
-        if(_joyon == true) {
-            if(Input.GetMouseButton(0)) {
-                _joyposition.position = _clickjoyposition;
-                _adposition.position = _mouseposition;
-                _mousedown = true;
+        _player.JumpingOff();
 
-                if (_joyposition.position.x > _adposition.position.x) {
-                    _player._rotate = -1;
-                }
-                else if (_joyposition.position.x < _adposition.position.x) {
-                    _player._rotate = 1;
-                }
-                else {
-                    _player._rotate = 0;
-                }
-            }
-            else {
-                _joyposition.position = _firstjoyposition;
-                _adposition.position = _firstjoyposition;
-                _mousedown = false;
-            }
+        if (Input.GetMouseButtonUp(0))
+        {
+            JoyInit();
+            return;
         }
-        else {
-            _joyposition.position = _firstjoyposition;
-            _adposition.position = _firstjoyposition;
-            _mousedown = false;
+
+        if (_clickJoyPosition.x < _canvasPosition.position.x || _clickJoyPosition.y < _canvasPosition.position.y)
+        {
+            JoyInit();
+            return;
         }
-        
+
+        if (Input.GetMouseButton(0))
+        {
+            mousePosition = new Vector3(Input.mousePosition.x, _clickJoyPosition.y);
+
+            mousePosition.x = ClampPositionX(mousePosition.x);
+
+            _joyPosition.position = _clickJoyPosition;
+            _stickPosition.position = mousePosition;
+
+            Turn();
+        }
+    }
+
+    private float ClampPositionX(float mousePosition)
+    {
+        if (mousePosition - _clickJoyPosition.x >= _stickWidth / 5)
+        {
+            mousePosition = _clickJoyPosition.x + _stickWidth / 5;
+        }
+        else if (mousePosition - _clickJoyPosition.x <= _stickWidth / -5)
+        {
+            mousePosition = _clickJoyPosition.x + _stickWidth / -5;
+        }
+
+        return mousePosition;
+    }
+
+    private void JoyInit()
+    {
+        _joyPosition.position = _firstJoyPosition;
+        _stickPosition.position = _firstJoyPosition;
+        _player.TurnStop();
+    }
+
+    private void Turn()
+    {
+        if (_joyPosition.position.x > _stickPosition.position.x)
+        {
+            _player.TurnLeft();
+        }
+        else if (_joyPosition.position.x < _stickPosition.position.x)
+        {
+            _player.TurnRight();
+        }
+        else
+        {
+            _player.TurnStop();
+        }
+    }
+
+    private void Jump()
+    {
+        _player.JumpingOn();
     }
 }
