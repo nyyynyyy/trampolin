@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 4772006138286306}
   - component: {fileID: 65851117661222976}
   - component: {fileID: 114116186760624840}
+  - component: {fileID: 54274214422487606}
   m_Layer: 0
   m_Name: Trampolin
   m_TagString: Untagged
@@ -96,8 +97,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1945841593398642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41.669537, y: 0.41881925, z: 2.7984085}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: 9.2, y: 0.5, z: 3.1}
+  m_LocalScale: {x: 5, y: 3, z: 5}
   m_Children:
   - {fileID: 4584496609803814}
   - {fileID: 4071360242699480}
@@ -180,6 +181,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1561406609195058}
   m_Mesh: {fileID: 4300002, guid: 441a4e34f2387f544bb6595a795f908f, type: 3}
+--- !u!54 &54274214422487606
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1945841593398642}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &65473299672333146
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -187,7 +203,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1561406609195058}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.881141, y: 0.8431063, z: -0.012384703}
@@ -215,5 +231,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38cf8d6d1def6ce4b88b0699e0fa1d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpForce: 700
+  _jumpForce: 1000
   _tangTang: {fileID: 1561406609195058}
