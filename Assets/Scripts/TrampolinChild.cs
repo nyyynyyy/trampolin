@@ -24,8 +24,10 @@ public class TrampolinChild : MonoBehaviour {
         _jumpSound.pitch = 0.65f;
         _jumpSound.Play();
         Debug.Log("JUMP");
-        
-        if (other.tag != "Player" && other.tag != "Baby") return;
+      
+        if (other.tag != "Player") return;
+
+        if (other.tag != "Player" ) return;
 
         Rigidbody rigid = other.gameObject.GetComponent<Rigidbody>();
         Vector3 jumpVecter = new Vector3(0, _jumpForce);
