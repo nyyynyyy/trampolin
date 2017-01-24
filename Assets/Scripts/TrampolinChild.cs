@@ -17,7 +17,7 @@ public class TrampolinChild : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("JUMP");
-        if (other.tag != "Player" && other.tag != "Baby") return;
+        if (other.tag != "Player" ) return;
 
         Rigidbody rigid = other.gameObject.GetComponent<Rigidbody>();
         Vector3 jumpVecter = new Vector3(0, _jumpForce);

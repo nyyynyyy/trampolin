@@ -473,6 +473,26 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c1ba458ea29bd2c419d25dcfaf9b5877, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1527244966 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1991990064898060, guid: 334e2daaf0a97ee4f9a3880b489e41a7,
+    type: 2}
+  m_PrefabInternal: {fileID: 2114094127}
+--- !u!54 &1527244969
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1527244966}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1001 &1649768139
 Prefab:
   m_ObjectHideFlags: 0
@@ -656,6 +676,57 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1979491145
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4772006138286306, guid: 155a45a6135b3854caeb1eb6c7592692, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 9.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772006138286306, guid: 155a45a6135b3854caeb1eb6c7592692, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772006138286306, guid: 155a45a6135b3854caeb1eb6c7592692, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 8.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772006138286306, guid: 155a45a6135b3854caeb1eb6c7592692, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772006138286306, guid: 155a45a6135b3854caeb1eb6c7592692, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772006138286306, guid: 155a45a6135b3854caeb1eb6c7592692, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772006138286306, guid: 155a45a6135b3854caeb1eb6c7592692, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772006138286306, guid: 155a45a6135b3854caeb1eb6c7592692, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 54274214422487606, guid: 155a45a6135b3854caeb1eb6c7592692,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 1945841593398642, guid: 155a45a6135b3854caeb1eb6c7592692, type: 2}
+      propertyPath: m_Name
+      value: Trampolin (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 155a45a6135b3854caeb1eb6c7592692, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &2049582815
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,19 +849,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4567792809548666, guid: 334e2daaf0a97ee4f9a3880b489e41a7, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0.6142066
+      value: 0.6142067
       objectReference: {fileID: 0}
     - target: {fileID: 4567792809548666, guid: 334e2daaf0a97ee4f9a3880b489e41a7, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.55448866
+      value: -0.5544887
       objectReference: {fileID: 0}
     - target: {fileID: 4567792809548666, guid: 334e2daaf0a97ee4f9a3880b489e41a7, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0.5585543
+      value: -0.55855435
       objectReference: {fileID: 0}
     - target: {fileID: 4567792809548666, guid: 334e2daaf0a97ee4f9a3880b489e41a7, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.057529707
+      value: -0.05752971
       objectReference: {fileID: 0}
     - target: {fileID: 114739518037256374, guid: 334e2daaf0a97ee4f9a3880b489e41a7,
         type: 2}
@@ -837,6 +908,7 @@ Prefab:
       propertyPath: _viewingAngle
       value: 90
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 54721222098025798, guid: 334e2daaf0a97ee4f9a3880b489e41a7, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 334e2daaf0a97ee4f9a3880b489e41a7, type: 2}
   m_IsPrefabParent: 0
