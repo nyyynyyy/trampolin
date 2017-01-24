@@ -2,6 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum AnimType
+{
+    Run,
+    Back,
+    Right,
+    Left,
+    Jump,
+    Rest,
+}
+
 public class Player : MonoBehaviour {
 
     public float _moveSpeed = 10f;
@@ -12,13 +22,31 @@ public class Player : MonoBehaviour {
     private float _rotateJoy;
     private bool _isJumpJoy;
 
+    private Animator _anim;
     private Rigidbody _rigidbody;
     private bool _isJumpOn;
     private float _move;
     private float _rotate;
     private bool _isJumpKeyDown;
-  
-	void Start () {
+
+    private bool isRest;
+    private bool isForward;
+    private bool isBackward;
+    private bool isJumping;
+
+    private string[] keys = new string[6];
+
+    void Awake()
+    {
+        _anim = GetComponent<Animator>();
+        for (int i = 0; i < keys.Length; i++)
+        {
+            keys[i] = "Is" + ((AnimType)i).ToString();
+            Debug.Log(keys[i]);
+        }
+    }
+
+    void Start () {
         _rigidbody = GetComponent<Rigidbody>();
 	}
 	
@@ -29,16 +57,15 @@ public class Player : MonoBehaviour {
 	}
 
     private void FixedUpdate() {
-        if (_moveJoy != 0)
-            _move = _moveJoy;
-        if (_rotateJoy != 0)
-            _rotate = _rotateJoy;
-        if (_isJumpJoy)
-            _isJumpKeyDown = _isJumpJoy;
+        if (_moveJoy != 0) _move = _moveJoy;
+        if (_rotateJoy != 0) _rotate = _rotateJoy;
+        if (_isJumpJoy) _isJumpKeyDown = _isJumpJoy;
+
+        if (_move == 0 && _rotate == 0 && !_isJumpOn) Anim(AnimType.Rest);
 
         Turning();
-        Jumping();
         Moving();
+        Jumping();
     }
 
     private void Moving() {
@@ -47,6 +74,11 @@ public class Player : MonoBehaviour {
         Vector3 movement = transform.forward * _move * Time.fixedDeltaTime * _moveSpeed;
         
         _rigidbody.MovePosition(_rigidbody.position + movement);
+
+        if (_isJumpOn) return;
+
+        if (_move > 0) Anim(AnimType.Run);
+        if (_move < 0) Anim(AnimType.Back);
     }
 
     private void Turning() {
@@ -55,13 +87,19 @@ public class Player : MonoBehaviour {
         Quaternion turnRotate = Quaternion.Euler(0f, turn, 0f);
 
         _rigidbody.MoveRotation(_rigidbody.rotation * turnRotate);
+
+        if (_isJumpOn) return;
+
+        if (_rotate > 0) Anim(AnimType.Right);
+        if (_rotate < 0) Anim(AnimType.Left);
     }
-    
+
     private void Jumping() {
         if (_isJumpOn) return;
         if (!_isJumpKeyDown) return;
 
         _rigidbody.AddForce(new Vector3(0, _jumpHigh, 0));
+        Anim(AnimType.Jump);
     }
 
     private void OnCollisionEnter(Collision other)
@@ -92,6 +130,7 @@ public class Player : MonoBehaviour {
             _moveSpeed = 10f;
     }
 
+    #region Setter
     public void MoveForward()
     {
         _moveJoy = 1;
@@ -130,5 +169,16 @@ public class Player : MonoBehaviour {
     public void TurnStop()
     {
         _rotateJoy = 0;
+    }
+    #endregion
+
+    void Anim(AnimType type)
+    {
+        foreach (string key in keys)
+        {
+            _anim.SetBool(key, false);
+        }
+
+        _anim.SetBool("Is" + type.ToString(), true);
     }
 }
