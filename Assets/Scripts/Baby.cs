@@ -17,7 +17,6 @@ public class Baby : MonoBehaviour
 
     public float _moveSpeed;
 
-
     private Rigidbody _rigid;
 
     private const float EQUALS_AREA = 1f;
@@ -199,6 +198,7 @@ public class Baby : MonoBehaviour
 
         if (angleDis > _viewingAngle * 0.5f) return;
 
+        
         FindPlayer();
     }
 
@@ -208,6 +208,7 @@ public class Baby : MonoBehaviour
         Debug.Log("Baby find player : " + _player.transform.position);
         _moveSpeed *= 1.5f;
         StartCoroutine(GoToFinish(_player.transform.position));
+        BackGroundMusic.instance.FindPlayer();
     }
 
     public void FindCandy(Vector3 candy)
@@ -215,5 +216,6 @@ public class Baby : MonoBehaviour
         StopAllCoroutines();
         Debug.Log("Baby find candy : " + _player.transform.position);
         StartCoroutine(GoToFinish(_player.transform.position));
+        BackGroundMusic.instance.FindCandy();
     }
 }
