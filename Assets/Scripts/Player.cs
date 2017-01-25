@@ -106,8 +106,8 @@ public class Player : MonoBehaviour {
     {
         // 착지
         string tag = other.collider.tag;
-
-        if(tag == "Ground")
+        
+        if(tag == "Ground" || tag == "Desk")
             _isJumpOn = false;
 
         if (tag == "Water")
@@ -123,7 +123,7 @@ public class Player : MonoBehaviour {
         // 점프
         string tag = other.collider.tag;
 
-        if(tag == "Ground")
+        if(tag == "Ground" || tag == "Desk")
             _isJumpOn = true;
 
         else if (tag == "Water")

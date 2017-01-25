@@ -194,7 +194,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &65473299672333146
 BoxCollider:
@@ -233,3 +233,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jumpForce: 1000
   _tangTang: {fileID: 1561406609195058}
+  _jumpSoundClip: {fileID: 8300000, guid: 9ac03354f0273604285875e71fe95ffe, type: 3}
+  _jumpSound: {fileID: 0}
