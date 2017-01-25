@@ -16,7 +16,7 @@ public enum AnimType
 public class Player : MonoBehaviour {
 
     public float _moveSpeed = 10f;
-    public float _turnSpeed = 180f;
+    public float _turnSpeed = 120f;
     public float _jumpHigh = 500f;
 
     private float _moveJoy;
@@ -73,6 +73,9 @@ public class Player : MonoBehaviour {
 
     private void Moving() {
         if (_move < 0 && _isJumpOn) _move = 0;
+
+        if (_move < 0)
+            _move *= 0.5f;
 
         Vector3 movement = transform.forward * _move * Time.fixedDeltaTime * _moveSpeed;
         
