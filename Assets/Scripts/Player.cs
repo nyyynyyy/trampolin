@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public enum AnimType
 {
@@ -34,11 +35,13 @@ public class Player : MonoBehaviour {
     private bool isBackward;
     private bool isJumping;
 
-    private string[] keys = new string[6];
+    private string[] keys;
 
     void Awake()
     {
         _anim = GetComponent<Animator>();
+
+        keys = new string[Enum.GetValues(typeof(AnimType)).Length];
         for (int i = 0; i < keys.Length; i++)
         {
             keys[i] = "Is" + ((AnimType)i).ToString();
