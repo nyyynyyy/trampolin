@@ -23,18 +23,11 @@ public class TrampolinChild : MonoBehaviour {
         _jumpSound.loop = false;
         _jumpSound.pitch = 0.65f;
         _jumpSound.Play();
-        Debug.Log("JUMP");
       
         if (other.tag != "Player") return;
 
-        if (other.tag != "Player" ) return;
-
-        Rigidbody rigid = other.gameObject.GetComponent<Rigidbody>();
         Vector3 jumpVecter = new Vector3(0, _jumpForce);
-        
-        Debug.Log("JUMP");
-        
-        rigid.velocity = new Vector3(rigid.velocity.x , 0, rigid.velocity.z); // 중력 가속도 초기화
-        rigid.AddForce(jumpVecter);
+
+        other.gameObject.GetComponent<Player>().TrampolinJump(jumpVecter);
     }
 }

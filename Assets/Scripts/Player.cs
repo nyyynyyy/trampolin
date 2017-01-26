@@ -9,7 +9,8 @@ public enum AnimType
     Back,
     Right,
     Left,
-    Jump,
+    JumpUp,
+    JumpDown,
     Rest,
 }
 
@@ -25,17 +26,20 @@ public class Player : MonoBehaviour {
 
     private Animator _anim;
     private Rigidbody _rigidbody;
-    private bool _isJumpOn;
+    [SerializeField]private bool _isJumpOn;
     private float _move;
     private float _rotate;
     private bool _isJumpKeyDown;
 
-    private bool isRest;
-    private bool isForward;
-    private bool isBackward;
-    private bool isJumping;
+    private bool _isRest;
+    private bool _isForward;
+    private bool _isBackward;
+    private bool _isJumping;
 
     private string[] keys;
+
+    [Header("Debug")]
+    public Vector3 ve;
 
     void Awake()
     {
@@ -45,15 +49,17 @@ public class Player : MonoBehaviour {
         for (int i = 0; i < keys.Length; i++)
         {
             keys[i] = "Is" + ((AnimType)i).ToString();
-            Debug.Log(keys[i]);
+       //     Debug.Log(keys[i]);
         }
     }
 
     void Start () {
         _rigidbody = GetComponent<Rigidbody>();
+        _isJumpOn = true;
 	}
 	
 	void Update () {
+        ve = _rigidbody.velocity;
         _move = Input.GetAxis("Vertical");
         _rotate = Input.GetAxis("Horizontal");
         _isJumpKeyDown = Input.GetKeyDown(KeyCode.Space);
@@ -73,6 +79,8 @@ public class Player : MonoBehaviour {
 
     private void Moving() {
         if (_move < 0 && _isJumpOn) _move = 0;
+        
+
 
         if (_move < 0)
             _move *= 0.5f;
@@ -105,16 +113,19 @@ public class Player : MonoBehaviour {
         if (!_isJumpKeyDown) return;
 
         _rigidbody.AddForce(new Vector3(0, _jumpHigh, 0));
-        Anim(AnimType.Jump);
+        _isJumpOn = true;
+        Debug.Log("Jump On");
     }
 
     private void OnCollisionEnter(Collision other)
     {
         // 착지
         string tag = other.collider.tag;
-        
-        if(tag == "Ground" || tag == "Desk")
+
+        if (tag == "Ground" || tag == "Desk")
+        {
             _isJumpOn = false;
+        }
 
         if (tag == "Water")
             _moveSpeed = 0;
@@ -129,8 +140,13 @@ public class Player : MonoBehaviour {
         // 점프
         string tag = other.collider.tag;
 
-        if(tag == "Ground" || tag == "Desk")
-            _isJumpOn = true;
+        if (tag == "Ground" || tag == "Desk")
+        {
+            if (_rigidbody.velocity.y < 0)
+            {
+                _isJumpOn = true;
+            }
+        }
 
         else if (tag == "Water")
             _moveSpeed = 10f;
@@ -178,7 +194,7 @@ public class Player : MonoBehaviour {
     }
     #endregion
 
-    void Anim(AnimType type)
+    private void Anim(AnimType type)
     {
         foreach (string key in keys)
         {
@@ -186,5 +202,13 @@ public class Player : MonoBehaviour {
         }
 
         _anim.SetBool("Is" + type.ToString(), true);
+    }
+
+    public void TrampolinJump(Vector3 jumpVector)
+    {
+        Debug.Log("JUMP");
+
+        _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0, _rigidbody.velocity.z); // 중력 가속도 초기화
+        _rigidbody.AddForce(jumpVector);
     }
 }
