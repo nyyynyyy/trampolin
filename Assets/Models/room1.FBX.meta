@@ -1,0 +1,159 @@
+fileFormatVersion: 2
+guid: b0099b34f4b071e4e83ad08989bf30a4
+timeCreated: 1486280649
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: bed
+    100002: bookshelf
+    100004: candy
+    100006: ceiling
+    100008: chair
+    100010: computer
+    100012: desk
+    100014: keyboard
+    100016: light
+    100018: monitor
+    100020: mouse
+    100022: pillow
+    100024: plug
+    100026: propeller
+    100028: room
+    100030: //RootNode
+    100032: stand
+    400000: bed
+    400002: bookshelf
+    400004: candy
+    400006: ceiling
+    400008: chair
+    400010: computer
+    400012: desk
+    400014: keyboard
+    400016: light
+    400018: monitor
+    400020: mouse
+    400022: pillow
+    400024: plug
+    400026: propeller
+    400028: room
+    400030: //RootNode
+    400032: stand
+    2300000: bed
+    2300002: bookshelf
+    2300004: candy
+    2300006: ceiling
+    2300008: chair
+    2300010: computer
+    2300012: desk
+    2300014: keyboard
+    2300016: light
+    2300018: monitor
+    2300020: mouse
+    2300022: pillow
+    2300024: plug
+    2300026: propeller
+    2300028: room
+    2300030: stand
+    3300000: bed
+    3300002: bookshelf
+    3300004: candy
+    3300006: ceiling
+    3300008: chair
+    3300010: computer
+    3300012: desk
+    3300014: keyboard
+    3300016: light
+    3300018: monitor
+    3300020: mouse
+    3300022: pillow
+    3300024: plug
+    3300026: propeller
+    3300028: room
+    3300030: stand
+    4300000: room
+    4300002: ceiling
+    4300004: bed
+    4300006: pillow
+    4300008: bookshelf
+    4300010: candy
+    4300012: desk
+    4300014: chair
+    4300016: computer
+    4300018: monitor
+    4300020: keyboard
+    4300022: mouse
+    4300024: stand
+    4300026: light
+    4300028: propeller
+    4300030: plug
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

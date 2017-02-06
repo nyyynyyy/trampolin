@@ -10,8 +10,11 @@ public class Candy : MonoBehaviour {
     {
         if(other.collider.tag == "Ground")
         {
-            _baby.FindCandy(transform.position);
-            Debug.Log("CALL BABY : " + transform.position);
+            if (_baby.transform.position.y > transform.position.y)
+            {
+                _baby.FindCandy(transform);
+                Debug.Log("CALL BABY : " + transform.position);
+            }
         }
 
         if(other.collider.tag == "Baby")

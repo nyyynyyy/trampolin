@@ -19,7 +19,7 @@ public class Baby : MonoBehaviour
 
     private Rigidbody _rigid;
 
-    private const float EQUALS_AREA = 1f;
+    private const float EQUALS_AREA = 4f;
     private const float TURN_SPEED = 50f;
 
     void Awake()
@@ -77,39 +77,40 @@ public class Baby : MonoBehaviour
         Debug.DrawRay(transform.position, left, Color.blue);
     }
 
-    /*
+    
     void OnCollisionEnter(Collision other)
     {
-        Debug.Log(other.collider.tag + " : ENTER");
+        if(other.collider.tag == "Player")
+        {
+            GameManager.instance.Gameover();
+        }
     }
-
-    void OnCollisionExit(Collision other)
-    {
-        Debug.Log(other.collider.tag + " : EXIT");
-    }
-    */
 
     private IEnumerator LoopCourse()
     {
         if (_coursePoint.Length == 0) yield break;
 
+       // Debug.Log("A");
+
         foreach (GameObject finish in _coursePoint)
         {
-            yield return StartCoroutine(GoToFinish(finish.transform.position));
+        //    Debug.Log("B");
+            yield return StartCoroutine(GoToFinish(finish.transform));
         }
 
         StartCoroutine(LoopCourse());
     }
 
-    private IEnumerator GoToFinish(Vector3 finish)
+    private IEnumerator GoToFinish(Transform finish)
     {
-        yield return StartCoroutine(TurnToAngle(finish));
+        yield return StartCoroutine(TurnToAngle(finish.position));
 
-        while (Vector3.Distance(transform.position, finish) > EQUALS_AREA)
+        while (Vector3.Distance(transform.position, finish.position) > EQUALS_AREA)
         {
-            Vector3 arrow = finish - transform.position;
+            Vector3 arrow = finish.position - transform.position;
             arrow.Normalize();
             Vector3 movePos = transform.position + arrow * _moveSpeed * Time.fixedDeltaTime;
+            movePos.y = transform.position.y;
             transform.position = movePos;
             yield return new WaitForFixedUpdate();
         }
@@ -182,6 +183,8 @@ public class Baby : MonoBehaviour
 
     private void SeePlayer()
     {
+        if (_player.transform.position.y > transform.position.y) return;
+
         float disPlayer = Vector3.Distance(transform.position, _player.transform.position);
 
         //Debug.Log(disPlayer);
@@ -198,24 +201,24 @@ public class Baby : MonoBehaviour
 
         if (angleDis > _viewingAngle * 0.5f) return;
 
-        
+        StopAllCoroutines();
+        BackGroundMusic.instance.FindPlayer();
+
         FindPlayer();
     }
 
-    public void FindPlayer()
+    private void FindPlayer()
     {
-        StopAllCoroutines();
         Debug.Log("Baby find player : " + _player.transform.position);
-        _moveSpeed *= 1.5f;
-        StartCoroutine(GoToFinish(_player.transform.position));
-        BackGroundMusic.instance.FindPlayer();
+        _moveSpeed *= 8f;
+        StartCoroutine(GoToFinish(_player.transform));
     }
 
-    public void FindCandy(Vector3 candy)
+    public void FindCandy(Transform candy)
     {
         StopAllCoroutines();
-        Debug.Log("Baby find candy : " + _player.transform.position);
-        StartCoroutine(GoToFinish(_player.transform.position));
+        Debug.Log("Baby find candy : " + candy);
+        StartCoroutine(GoToFinish(candy));
         BackGroundMusic.instance.FindCandy();
     }
 }

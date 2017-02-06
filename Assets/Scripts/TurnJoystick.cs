@@ -22,6 +22,7 @@ public class TurnJoystick : MonoBehaviour {
     {
         Vector3 mousePosition = Input.mousePosition;
 
+//#if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
         {
             _clickJoyPosition = mousePosition;
@@ -31,6 +32,21 @@ public class TurnJoystick : MonoBehaviour {
                 return;
             }
         }
+
+//#elif UNITY_ANDROID
+        for (int i = 0; i < 5; i++)
+        {
+            if (Input.GetTouch(i).phase == TouchPhase.Began)
+            {
+                _clickJoyPosition = Input.GetTouch(i).position;
+                if (_clickJoyPosition.x > _canvasPosition.position.x && _clickJoyPosition.y < _canvasPosition.position.y)
+                {
+                    Jump();
+                    return;
+                }
+            }
+        }
+//#endif
 
         _player.JumpingOff();
 

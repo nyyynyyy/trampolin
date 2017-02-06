@@ -8,6 +8,6 @@ public class Exit : MonoBehaviour {
     {
         if (other.tag != "Player") return;
 
-        Debug.Log("EXIT");
+        GameManager.instance.Gameover(true);
     }
 }

@@ -11,8 +11,11 @@ public class MoveJoystick : MonoBehaviour {
 
     private float _stickhHeight;
     private Vector3 _firstJoyPosition;
+//#if UNITY_EDITOR
     private Vector3 _clickJoyPosition;
-
+/*#elif UNITY_ANDROID
+    private Vector3[] _clickJoyPosition = new Vector[5];
+#endif*/
     void Start() {
         _firstJoyPosition = _joyPosition.position;
         _stickhHeight = _stickPosition.rect.height;
@@ -20,12 +23,30 @@ public class MoveJoystick : MonoBehaviour {
     }
 
     void Update() {
+//#if UNITY_EDITOR
         Vector3 mousePosition = Input.mousePosition;
+/*#elif UNITY_ANDROID
+        Vector3[] mousePosition = new Vector3[5]{
+            Input.GetTouch(0).position,    
+            Input.GetTouch(1).position,    
+            Input.GetTouch(2).position,    
+            Input.GetTouch(3).position,    
+            Input.GetTouch(4).position
+        }
+#endif*/
 
-        if (Input.GetMouseButtonDown(0)) {
+//#if UNITY_EDITOR
+        if (Input.GetMouseButtonDown(0))
+        {
             _clickJoyPosition = mousePosition;
         }
-
+/*#elif UNITY_ANDROID
+        for (int i = 0; i < 5; i++)
+        { 
+            if (Input.GetTouch(i).phase != TouchPhase.Began) continue;
+            _clickJoyPosition[i] = Input.GetTouch(i).position;
+        }    
+#endif*/
         if (Input.GetMouseButtonUp(0))
         {
             JoyInit();

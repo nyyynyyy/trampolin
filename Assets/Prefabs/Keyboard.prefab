@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 65971529594732304}
   m_Layer: 0
   m_Name: Keyboard
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,13 +37,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1596149343451982}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 4.77, y: 22.13, z: 2.28}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.3}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: -8.6, y: 20.32, z: 13.51}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 90, z: 0}
 --- !u!23 &23031134783257368
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -95,7 +95,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!65 &65971529594732304
 BoxCollider:
@@ -107,8 +107,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7.0781455, y: 4.007821, z: 0.6780938}
-  m_Center: {x: 0, y: -0.030526824, z: 0.33799446}
+  m_Size: {x: 7.0781465, y: 4.007821, z: 1.0511392}
+  m_Center: {x: 0, y: -0.030526826, z: 0.15141168}
 --- !u!95 &95035976576688724
 Animator:
   serializedVersion: 3

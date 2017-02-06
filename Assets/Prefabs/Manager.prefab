@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 82672915013153818}
   - component: {fileID: 82091801451221174}
   - component: {fileID: 114175604375242568}
+  - component: {fileID: 114529936360964858}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -55,7 +56,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f9bc21a270d8478428bca74bae2a5083, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -135,7 +136,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.498
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -233,6 +234,20 @@ MonoBehaviour:
   _backGroundClip: {fileID: 8300000, guid: f9bc21a270d8478428bca74bae2a5083, type: 3}
   _findPlayerClip: {fileID: 8300000, guid: 6fa1504ab2a1991468dcc3bfcaae3af6, type: 3}
   _backGroundMusic: {fileID: 82091801451221174}
+--- !u!114 &114529936360964858
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1294096349220696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ed03711a0296104d8b13478c6d60524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _background: {fileID: 0}
+  _text: {fileID: 0}
+  _subText: {fileID: 0}
 --- !u!114 &114770728737954302
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 54243432734043034}
   m_Layer: 0
   m_Name: Trampolin
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,8 +71,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1725082455658588}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.2, y: 0.49999714, z: 11.02}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalPosition: {x: 0.91, y: 0.49999714, z: 20.23}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 4763305534608892}
   - {fileID: 4935736503923562}
@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38cf8d6d1def6ce4b88b0699e0fa1d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpForce: 1000
+  _jumpForce: 1500
   _tangTang: {fileID: 1617581096084566}
   _jumpSoundClip: {fileID: 8300000, guid: 9ac03354f0273604285875e71fe95ffe, type: 3}
   _jumpSound: {fileID: 0}

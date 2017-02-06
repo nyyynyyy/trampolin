@@ -25,8 +25,9 @@ public class Player : MonoBehaviour {
     private bool _isJumpJoy;
 
     private Animator _anim;
-    private Rigidbody _rigidbody;
+    private Rigidbody _rigid;
     [SerializeField]private bool _isJumpOn;
+    private bool _isTouching;
     private float _move;
     private float _rotate;
     private bool _isJumpKeyDown;
@@ -37,9 +38,6 @@ public class Player : MonoBehaviour {
     private bool _isJumping;
 
     private string[] keys;
-
-    [Header("Debug")]
-    public Vector3 ve;
 
     void Awake()
     {
@@ -54,18 +52,17 @@ public class Player : MonoBehaviour {
     }
 
     void Start () {
-        _rigidbody = GetComponent<Rigidbody>();
+        _rigid = GetComponent<Rigidbody>();
         _isJumpOn = true;
 	}
 	
 	void Update () {
-        ve = _rigidbody.velocity;
         _move = Input.GetAxis("Vertical");
         _rotate = Input.GetAxis("Horizontal");
         _isJumpKeyDown = Input.GetKeyDown(KeyCode.Space);
 	}
 
-    private void FixedUpdate() {
+    void FixedUpdate() {
         if (_moveJoy != 0) _move = _moveJoy;
         if (_rotateJoy != 0) _rotate = _rotateJoy;
         if (_isJumpJoy) _isJumpKeyDown = _isJumpJoy;
@@ -77,17 +74,46 @@ public class Player : MonoBehaviour {
         Jumping();
     }
 
-    private void Moving() {
-        if (_move < 0 && _isJumpOn) _move = 0;
-        
+    void OnCollisionStay(Collision other)
+    {
+        if (other.collider.tag == "Ground")
+        {
+            _isJumpOn = false;
+        }
+        if (other.collider.tag == "Desk")
+        {
+             _isTouching = true;
+        }
+        if(other.collider.tag == "Water")
+        {
+            GameManager.instance.Gameover();
+        }
+    }
 
+    void OnCollisionExit(Collision other)
+    {
+        if (other.collider.tag == "Ground")
+        {
+            _isJumpOn = true;
+        }
+        if (other.collider.tag == "Desk")
+        {
+            _isJumpOn = true;
+            _isTouching = false;
+        }
+    }
+
+    private void Moving() {
+        if (_isJumpOn && _isTouching) return;
+
+        if (_move < 0 && _isJumpOn) _move = 0;
 
         if (_move < 0)
             _move *= 0.5f;
 
         Vector3 movement = transform.forward * _move * Time.fixedDeltaTime * _moveSpeed;
-        
-        _rigidbody.MovePosition(_rigidbody.position + movement);
+        movement.y = _rigid.velocity.y;
+        _rigid.velocity = movement;
 
         if (_isJumpOn) return;
 
@@ -96,11 +122,12 @@ public class Player : MonoBehaviour {
     }
 
     private void Turning() {
-        float turn = _rotate * Time.fixedDeltaTime * _turnSpeed;
+        float angle = transform.rotation.eulerAngles.y;
+        float arrow = _rotate * Time.fixedDeltaTime * _turnSpeed;
 
-        Quaternion turnRotate = Quaternion.Euler(0f, turn, 0f);
-
-        _rigidbody.MoveRotation(_rigidbody.rotation * turnRotate);
+        transform.rotation = Quaternion.AngleAxis(
+            angle + arrow,
+            transform.up);
 
         if (_isJumpOn) return;
 
@@ -112,44 +139,9 @@ public class Player : MonoBehaviour {
         if (_isJumpOn) return;
         if (!_isJumpKeyDown) return;
 
-        _rigidbody.AddForce(new Vector3(0, _jumpHigh, 0));
+        _rigid.AddForce(new Vector3(0, _jumpHigh, 0));
         _isJumpOn = true;
         Debug.Log("Jump On");
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        // 착지
-        string tag = other.collider.tag;
-
-        if (tag == "Ground" || tag == "Desk")
-        {
-            _isJumpOn = false;
-        }
-
-        if (tag == "Water")
-            _moveSpeed = 0;
-
-        if (_moveSpeed == 0 && _isJumpOn == true) {
-            Debug.Log("die");
-        }
-    }
-
-    private void OnCollisionExit(Collision other)
-    {
-        // 점프
-        string tag = other.collider.tag;
-
-        if (tag == "Ground" || tag == "Desk")
-        {
-            if (_rigidbody.velocity.y < 0)
-            {
-                _isJumpOn = true;
-            }
-        }
-
-        else if (tag == "Water")
-            _moveSpeed = 10f;
     }
 
     #region Setter
@@ -208,7 +200,7 @@ public class Player : MonoBehaviour {
     {
         Debug.Log("JUMP");
 
-        _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0, _rigidbody.velocity.z); // 중력 가속도 초기화
-        _rigidbody.AddForce(jumpVector);
+        _rigid.velocity = new Vector3(_rigid.velocity.x, 0, _rigid.velocity.z); // 중력 가속도 초기화
+        _rigid.AddForce(jumpVector);
     }
 }
