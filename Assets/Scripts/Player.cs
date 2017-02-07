@@ -16,18 +16,19 @@ public enum AnimType
 
 public class Player : MonoBehaviour {
 
+    public Joystick _horizontal;
+    public Joystick _vertical;
+    public TapArea _jumpArea;
+
     public float _moveSpeed = 10f;
     public float _turnSpeed = 120f;
     public float _jumpHigh = 500f;
 
-    private float _moveJoy;
-    private float _rotateJoy;
-    private bool _isJumpJoy;
-
     private Animator _anim;
     private Rigidbody _rigid;
-    [SerializeField]private bool _isJumpOn;
+    private bool _isJumpOn;
     private bool _isTouching;
+
     private float _move;
     private float _rotate;
     private bool _isJumpKeyDown;
@@ -47,7 +48,6 @@ public class Player : MonoBehaviour {
         for (int i = 0; i < keys.Length; i++)
         {
             keys[i] = "Is" + ((AnimType)i).ToString();
-       //     Debug.Log(keys[i]);
         }
     }
 
@@ -57,16 +57,18 @@ public class Player : MonoBehaviour {
 	}
 	
 	void Update () {
+#if UNITY_EDITOR
         _move = Input.GetAxis("Vertical");
         _rotate = Input.GetAxis("Horizontal");
         _isJumpKeyDown = Input.GetKeyDown(KeyCode.Space);
-	}
+#elif UNITY_ANDROID
+        _move = _vertical.axis;
+        _rotate = _horizontal.axis;
+        _isJumpKeyDown = _jumpArea.press;
+#endif
+    }
 
     void FixedUpdate() {
-        if (_moveJoy != 0) _move = _moveJoy;
-        if (_rotateJoy != 0) _rotate = _rotateJoy;
-        if (_isJumpJoy) _isJumpKeyDown = _isJumpJoy;
-
         if (_move == 0 && _rotate == 0 && !_isJumpOn) Anim(AnimType.Rest);
 
         Turning();
@@ -76,15 +78,15 @@ public class Player : MonoBehaviour {
 
     void OnCollisionStay(Collision other)
     {
-        if (other.collider.tag == "Ground")
+        if (other.collider.CompareTag("Ground"))
         {
             _isJumpOn = false;
         }
-        if (other.collider.tag == "Desk")
+        if (other.collider.CompareTag("Desk"))
         {
              _isTouching = true;
         }
-        if(other.collider.tag == "Water")
+        if(other.collider.CompareTag("Water"))
         {
             GameManager.instance.Gameover();
         }
@@ -92,11 +94,11 @@ public class Player : MonoBehaviour {
 
     void OnCollisionExit(Collision other)
     {
-        if (other.collider.tag == "Ground")
+        if (other.collider.CompareTag("Ground"))
         {
             _isJumpOn = true;
         }
-        if (other.collider.tag == "Desk")
+        if (other.collider.CompareTag("Desk"))
         {
             _isJumpOn = true;
             _isTouching = false;
@@ -143,48 +145,6 @@ public class Player : MonoBehaviour {
         _isJumpOn = true;
         Debug.Log("Jump On");
     }
-
-    #region Setter
-    public void MoveForward()
-    {
-        _moveJoy = 1;
-    }
-
-    public void MoveBackward()
-    {
-        _moveJoy = -1;
-    }
-
-    public void MoveStop()
-    {
-        _moveJoy = 0;
-    }
-
-    public void JumpingOn()
-    {
-        _isJumpJoy = true;
-    }
-
-    public void JumpingOff()
-    {
-        _isJumpJoy = false;
-    }
-
-    public void TurnRight()
-    {
-        _rotateJoy = 1;
-    }
-
-    public void TurnLeft()
-    {
-        _rotateJoy = -1;
-    }
-
-    public void TurnStop()
-    {
-        _rotateJoy = 0;
-    }
-    #endregion
 
     private void Anim(AnimType type)
     {

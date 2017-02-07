@@ -6,7 +6,7 @@ public class Exit : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "Player") return;
+        if (!other.CompareTag("Player")) return;
 
         GameManager.instance.Gameover(true);
     }

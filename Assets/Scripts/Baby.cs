@@ -80,7 +80,7 @@ public class Baby : MonoBehaviour
     
     void OnCollisionEnter(Collision other)
     {
-        if(other.collider.tag == "Player")
+        if(other.collider.CompareTag("Player"))
         {
             GameManager.instance.Gameover();
         }
@@ -90,11 +90,8 @@ public class Baby : MonoBehaviour
     {
         if (_coursePoint.Length == 0) yield break;
 
-       // Debug.Log("A");
-
         foreach (GameObject finish in _coursePoint)
         {
-        //    Debug.Log("B");
             yield return StartCoroutine(GoToFinish(finish.transform));
         }
 
@@ -123,15 +120,11 @@ public class Baby : MonoBehaviour
         float angle = GetAngle();
         float finishAngle = Mathf.Atan2(arrowVector.x, arrowVector.z) * Mathf.Rad2Deg;
 
-        //Debug.Log(" ME : " + angle + " / " + "FINSIH : " + finishAngle);
-
         float angleDis = finishAngle - angle;
         TurnNumber(ref angleDis, 360);
 
         float arrow = finishAngle - angle > angle - finishAngle ? 1: -1;
 
-        //Debug.Log(angleDis);
-    
         while (Mathf.Abs(angleDis) > 1f)
         {
             angle += TURN_SPEED * Time.fixedDeltaTime * arrow;
@@ -139,7 +132,6 @@ public class Baby : MonoBehaviour
 
             angleDis = finishAngle - angle;
             TurnNumber(ref angleDis, 360);
-            //Debug.Log(angleDis);
 
             SetAngle(angle);
 
@@ -147,9 +139,6 @@ public class Baby : MonoBehaviour
         }
 
         SetAngle(finishAngle);
-        //Debug.Log("TURN END : " + GetAngle());
-
-       // yield return new WaitForSeconds(1f);
     }
 
     private void TurnNumber(ref float number, float limit)
@@ -187,7 +176,6 @@ public class Baby : MonoBehaviour
 
         float disPlayer = Vector3.Distance(transform.position, _player.transform.position);
 
-        //Debug.Log(disPlayer);
         if (disPlayer > _viewingDistance) return;
 
         Vector3 arrowVector = _player.transform.position - transform.position;
@@ -197,7 +185,6 @@ public class Baby : MonoBehaviour
         float angleDis = Mathf.Abs(playerAngle - myAngle);
 
         TurnNumber(ref angleDis, 360f);
-       // Debug.Log(angleDis);
 
         if (angleDis > _viewingAngle * 0.5f) return;
 

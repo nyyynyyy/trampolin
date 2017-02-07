@@ -9,7 +9,7 @@ public class ViewMsg : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             GameManager.instance.RenderMessage(_msg,_subMsg);
             gameObject.SetActive(false);

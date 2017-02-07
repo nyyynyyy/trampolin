@@ -16,7 +16,7 @@ public class TitleManager : MonoBehaviour {
 
     public Text _roomName;
 
-    public float _turningSpeed = 5f;
+    public float _turningSpeed = 10f;
 
     public string[] _rooms;
 
@@ -39,16 +39,17 @@ public class TitleManager : MonoBehaviour {
 
     private void TurnLight()
     {
-        if (Input.GetMouseButtonDown(0))
+#if UNITY_EDITOR
+        if (Input.GetMouseButtonDown(1))
         {
             _light.enabled = !_light.enabled;
-            _turningSpeed *= 10f;
         }
-
-        if (Input.GetMouseButtonUp(0))
+#elif UNITY_ANDROID
+        if (Input.GetTouch(1).phase == TouchPhase.Began)
         {
-            _turningSpeed *= 0.1f;
+            _light.enabled = !_light.enabled;
         }
+#endif
     }
 
     private void TurnUnityChan()
