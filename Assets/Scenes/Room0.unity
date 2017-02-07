@@ -350,6 +350,12 @@ Transform:
   m_Father: {fileID: 1222832899}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &351036740 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114590153087283658, guid: c1ba458ea29bd2c419d25dcfaf9b5877,
+    type: 2}
+  m_PrefabInternal: {fileID: 1405742591}
+  m_Script: {fileID: 11500000, guid: 9427cbadd19b57d4f968ac5600dbac09, type: 3}
 --- !u!1 &351395063
 GameObject:
   m_ObjectHideFlags: 0
@@ -2082,6 +2088,11 @@ Prefab:
       propertyPath: _jumpArea
       value: 
       objectReference: {fileID: 1703836238}
+    - target: {fileID: 114446862939294784, guid: 8861aa17e8afbbd4db41cdc36252eaec,
+        type: 2}
+      propertyPath: _pullArea
+      value: 
+      objectReference: {fileID: 351036740}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8861aa17e8afbbd4db41cdc36252eaec, type: 2}
   m_IsPrefabParent: 0

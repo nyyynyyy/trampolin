@@ -160,13 +160,11 @@ public class Player : MonoBehaviour {
 
     private void Pulling()
     {
-        if (_pullArea.pressEnd) Debug.Log("R");
-
         if (_isPullKey)
         {
             if (_pullRigid == null)
             {
-                Ray ray = new Ray(transform.position, transform.forward);
+                Ray ray = new Ray(transform.position, transform.forward + new Vector3(0, 0.1f));
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, 2f))
                 {
