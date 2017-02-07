@@ -49,6 +49,14 @@ public class GameManager : MonoBehaviour {
     {
         StartCoroutine(FadeIn(clear?"탈출 성공":"탈출 실패"));
         _isGameover = true;
+
+        if (!clear) return;
+        int room = PlayerPrefs.GetInt("Room");
+        int level = PlayerPrefs.GetInt("Level");
+
+        if (room != level) return;
+        PlayerPrefs.SetInt("Level", level + 1);
+        PlayerPrefs.Save();
     }
 
     public void RenderMessage(string msg, string msg2)

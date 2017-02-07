@@ -10,6 +10,7 @@ public class TapArea : MonoBehaviour {
 
     private float _width;
     private bool _press;
+    private bool _pressEnd;
     private int _pinger;
 
     public bool press
@@ -17,6 +18,13 @@ public class TapArea : MonoBehaviour {
         get
         {
             return _press;
+        }
+    }
+    public bool pressEnd
+    {
+        get
+        {
+            return _pressEnd;
         }
     }
 
@@ -29,6 +37,7 @@ public class TapArea : MonoBehaviour {
     void Update()
     {
         Vector3 pingerPos;
+        _pressEnd = false;
 
 #if UNITY_EDITOR
         pingerPos = Input.mousePosition;
@@ -47,6 +56,7 @@ public class TapArea : MonoBehaviour {
         {
             if (!IsInRange(pingerPos)) return;
             Init();
+            _pressEnd = true;
         }
 #elif UNITY_ANDROID       
         for(int i = 0; i < 5; i++)
@@ -63,6 +73,7 @@ public class TapArea : MonoBehaviour {
             {
                 if (i == _pinger) Init();
                 if (i < _pinger) _pinger--;
+                _pressEnd = true;
             }
         }
 #endif

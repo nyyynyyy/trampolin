@@ -21,6 +21,7 @@ public class TitleManager : MonoBehaviour {
     public string[] _rooms;
 
     private int _roomNumber = 0;
+    private int _level;
 
     void Start()
     {
@@ -29,6 +30,17 @@ public class TitleManager : MonoBehaviour {
         _light.enabled = false;
         _left.SetActive(false);
         _roomName.text = _rooms[0];
+
+        if (PlayerPrefs.HasKey("Level"))
+        {
+            _level = PlayerPrefs.GetInt("Level");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Level", 0);
+            PlayerPrefs.Save();
+            _level = 0;
+        }
     }
 
     void Update()
@@ -73,12 +85,17 @@ public class TitleManager : MonoBehaviour {
 
     public void Room()
     {
+        if (_level < _roomNumber) return;
         StartCoroutine(FadeInAndLoadScene("Room" + _roomNumber));
+        PlayerPrefs.SetInt("Room", _roomNumber);
+        PlayerPrefs.Save();
     }
 
     public void Staff()
     {
         StartCoroutine(FadeInAndLoadScene("Staff"));
+        PlayerPrefs.SetInt("Level", 10);
+        PlayerPrefs.Save();
     }
 
     public void Exit()
@@ -96,6 +113,14 @@ public class TitleManager : MonoBehaviour {
             _right.SetActive(false);
         }
         _roomName.text = _rooms[_roomNumber];
+        if (_level < _roomNumber)
+        {
+            _roomName.color = new Color(150, 150, 150, 255) / 255f;
+        }
+        else
+        {
+            _roomName.color = new Color(0, 0, 0);
+        }
     }
 
     public void Left()
@@ -108,6 +133,14 @@ public class TitleManager : MonoBehaviour {
             _left.SetActive(false);
         }
         _roomName.text = _rooms[_roomNumber];
+        if (_level < _roomNumber)
+        {
+            _roomName.color = new Color(150, 150, 150, 255) / 255f;
+        }
+        else
+        {
+            _roomName.color = new Color(0, 0, 0);
+        }
     }
 }
  
