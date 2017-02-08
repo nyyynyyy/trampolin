@@ -19,13 +19,13 @@ public class TrampolinChild : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
+        if (other.tag != "Player") return;
+
         _jumpSound.clip = _jumpSoundClip;
         _jumpSound.loop = false;
         _jumpSound.pitch = 0.65f;
         _jumpSound.Play();
       
-        if (other.tag != "Player") return;
-
         Vector3 jumpVecter = new Vector3(0, _jumpForce);
 
         other.gameObject.GetComponent<Player>().TrampolinJump(jumpVecter);
