@@ -69,8 +69,8 @@ public class Player : MonoBehaviour {
         _isPullKey = Input.GetKey(KeyCode.LeftShift);
         _isPullKeyUp = Input.GetKeyUp(KeyCode.LeftShift);
 #elif UNITY_ANDROID
-        _move = _vertical.axis;
-        _rotate = _horizontal.axis;
+        _axisMove = _vertical.axis;
+        _axisRotate = _horizontal.axis;
         _isJumpKey = _jumpArea.press;
         _isPullKey = _pullArea.press;
         _isPullKeyUp = _pullArea.pressEnd;
