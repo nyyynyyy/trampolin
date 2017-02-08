@@ -17,6 +17,8 @@ public class Baby : MonoBehaviour
 
     public float _moveSpeed;
 
+    public bool _stay = false;
+
     private Rigidbody _rigid;
 
     private const float EQUALS_AREA = 4f;
@@ -29,16 +31,22 @@ public class Baby : MonoBehaviour
 
     void Start()
     {
-        MoveCourse(0);
-        SetAngle(0);
-        StartCoroutine(LoopCourse());
+        if (!_stay)
+        {
+            MoveCourse(0);
+            SetAngle(0);
+            StartCoroutine(LoopCourse());
+        }
         StartCoroutine(Eye());
     }
 
     void Update()
     {
-        DebugCourse();
-        DebugViewing();
+        if (!_stay)
+        {
+            DebugCourse();
+            DebugViewing();
+        }
     }
 
     private IEnumerator Eye()

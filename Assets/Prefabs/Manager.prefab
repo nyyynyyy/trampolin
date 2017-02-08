@@ -19,8 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4168544472193544}
-  - component: {fileID: 114770728737954302}
-  - component: {fileID: 114038051169460868}
   - component: {fileID: 82672915013153818}
   - component: {fileID: 82091801451221174}
   - component: {fileID: 114175604375242568}
@@ -56,8 +54,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f9bc21a270d8478428bca74bae2a5083, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0
-  m_Pitch: 1
+  m_Volume: 0.07
+  m_Pitch: 1.2
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -134,9 +132,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 9ac03354f0273604285875e71fe95ffe, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.498
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -205,21 +203,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114038051169460868
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1294096349220696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 554bf409ac168d143aaa40874c1dda8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _joyPosition: {fileID: 0}
-  _stickPosition: {fileID: 0}
-  _canvasPosition: {fileID: 0}
-  _playerMove: {fileID: 0}
 --- !u!114 &114175604375242568
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -248,18 +231,3 @@ MonoBehaviour:
   _background: {fileID: 0}
   _text: {fileID: 0}
   _subText: {fileID: 0}
---- !u!114 &114770728737954302
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1294096349220696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecce68b7df3be974ab1222fc3c37245e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _joyPosition: {fileID: 0}
-  _stickPosition: {fileID: 0}
-  _canvasPosition: {fileID: 0}
-  _player: {fileID: 0}

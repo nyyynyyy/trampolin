@@ -140,10 +140,9 @@ MonoBehaviour:
   _turningSpeed: 5
   _rooms:
   - "\uC5F0\uC2B5\uBC29"
-  - "\uD558\uB098\uBC29"
-  - "\uB458\uB458\uBC29"
-  - "\uC14B\uC14B\uBC29"
-  - "\uB137\uB137\uBC29"
+  - "\uC815\uD658\uBC29"
+  - "\uC7AC\uD604\uBC29"
+  - "\uD55C\uC870\uBC29"
 --- !u!1 &115475412
 GameObject:
   m_ObjectHideFlags: 0
