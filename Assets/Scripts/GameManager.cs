@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour {
         Color color = new Color(0, 0, 0, 255 / 255f);
         while (color.a > 0)
         {
-            color.a -= 20 / 255f;
+            color.a -= 30 / 255f;
             _background.color = color;
             yield return new WaitForSecondsRealtime(0.05f);
         }
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour {
         Color color = new Color(0, 0, 0, 0);
         while (color.a < 200 / 255f)
         {
-            color.a += 20 / 255f;
+            color.a += 30 / 255f;
             _background.color = color;
             yield return new WaitForSecondsRealtime(0.05f);
         }
