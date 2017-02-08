@@ -94,8 +94,8 @@ public class TitleManager : MonoBehaviour {
     public void Staff()
     {
         StartCoroutine(FadeInAndLoadScene("Staff"));
-        PlayerPrefs.SetInt("Level", 10);
-        PlayerPrefs.Save();
+        /*PlayerPrefs.SetInt("Level", 10);
+        PlayerPrefs.Save();*/
     }
 
     public void Exit()

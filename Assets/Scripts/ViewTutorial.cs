@@ -37,7 +37,7 @@ public class ViewTutorial : MonoBehaviour
     {
         while(_canvasGroup.alpha < 1)
         {
-            _canvasGroup.alpha += 1f * Time.deltaTime;
+            _canvasGroup.alpha += 2f * Time.deltaTime;
             yield return null;
         }
     }
@@ -46,7 +46,7 @@ public class ViewTutorial : MonoBehaviour
     {
         while (_canvasGroup.alpha > 0)
         {
-            _canvasGroup.alpha -= 1f * Time.deltaTime;
+            _canvasGroup.alpha -= 2f * Time.deltaTime;
             yield return null;
         }
         gameObject.SetActive(false);
