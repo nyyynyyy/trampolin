@@ -194,7 +194,7 @@ PlayerSettings:
   AndroidTargetDevice: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: D:/Programming/Git Projects/DentalCaries/cactusflower.keystore
+  AndroidKeystoreName: C:/Users/b4580/Downloads/cactusflower.keystore
   AndroidKeyaliasName: cactusflower
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
