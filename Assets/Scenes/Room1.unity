@@ -482,6 +482,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4328529459415270, guid: 155a45a6135b3854caeb1eb6c7592692,
     type: 2}
   m_PrefabInternal: {fileID: 284045062}
+--- !u!114 &287082118 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114586273773789992, guid: c1ba458ea29bd2c419d25dcfaf9b5877,
+    type: 2}
+  m_PrefabInternal: {fileID: 1405742591}
+  m_Script: {fileID: 11500000, guid: 9427cbadd19b57d4f968ac5600dbac09, type: 3}
 --- !u!1 &296177521
 GameObject:
   m_ObjectHideFlags: 0
@@ -2120,6 +2126,11 @@ Prefab:
     - target: {fileID: 114446862939294784, guid: 8861aa17e8afbbd4db41cdc36252eaec,
         type: 2}
       propertyPath: _jumpArea
+      value: 
+      objectReference: {fileID: 287082118}
+    - target: {fileID: 114446862939294784, guid: 8861aa17e8afbbd4db41cdc36252eaec,
+        type: 2}
+      propertyPath: _pullArea
       value: 
       objectReference: {fileID: 1133607287}
     m_RemovedComponents: []

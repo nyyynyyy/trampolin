@@ -1875,6 +1875,30 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c1ba458ea29bd2c419d25dcfaf9b5877, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1405742592 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114586273773789992, guid: c1ba458ea29bd2c419d25dcfaf9b5877,
+    type: 2}
+  m_PrefabInternal: {fileID: 1405742591}
+  m_Script: {fileID: 11500000, guid: 9427cbadd19b57d4f968ac5600dbac09, type: 3}
+--- !u!114 &1405742593 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114590153087283658, guid: c1ba458ea29bd2c419d25dcfaf9b5877,
+    type: 2}
+  m_PrefabInternal: {fileID: 1405742591}
+  m_Script: {fileID: 11500000, guid: 9427cbadd19b57d4f968ac5600dbac09, type: 3}
+--- !u!114 &1405742594 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114297820241004170, guid: c1ba458ea29bd2c419d25dcfaf9b5877,
+    type: 2}
+  m_PrefabInternal: {fileID: 1405742591}
+  m_Script: {fileID: 11500000, guid: e5bd47a7bcf9edc419309a324cbad911, type: 3}
+--- !u!114 &1405742595 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114417481442342622, guid: c1ba458ea29bd2c419d25dcfaf9b5877,
+    type: 2}
+  m_PrefabInternal: {fileID: 1405742591}
+  m_Script: {fileID: 11500000, guid: e5bd47a7bcf9edc419309a324cbad911, type: 3}
 --- !u!4 &1449998309 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4757249290010520, guid: 700d1bd3beb30104aaf0c1b8971b68fc,
@@ -2089,6 +2113,26 @@ Prefab:
       propertyPath: _jumpHigh
       value: 700
       objectReference: {fileID: 0}
+    - target: {fileID: 114446862939294784, guid: 8861aa17e8afbbd4db41cdc36252eaec,
+        type: 2}
+      propertyPath: _horizontal
+      value: 
+      objectReference: {fileID: 1405742595}
+    - target: {fileID: 114446862939294784, guid: 8861aa17e8afbbd4db41cdc36252eaec,
+        type: 2}
+      propertyPath: _vertical
+      value: 
+      objectReference: {fileID: 1405742594}
+    - target: {fileID: 114446862939294784, guid: 8861aa17e8afbbd4db41cdc36252eaec,
+        type: 2}
+      propertyPath: _pullArea
+      value: 
+      objectReference: {fileID: 1405742593}
+    - target: {fileID: 114446862939294784, guid: 8861aa17e8afbbd4db41cdc36252eaec,
+        type: 2}
+      propertyPath: _jumpArea
+      value: 
+      objectReference: {fileID: 1405742592}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8861aa17e8afbbd4db41cdc36252eaec, type: 2}
   m_IsPrefabParent: 0
