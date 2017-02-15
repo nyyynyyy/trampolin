@@ -100,7 +100,7 @@ public class TitleManager : MonoBehaviour {
 
     public void Exit()
     {
-        Debug.Log("EXIT");
+        Application.Quit();
     }
 
     public void Right()

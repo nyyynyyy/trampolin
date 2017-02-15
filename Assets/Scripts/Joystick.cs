@@ -43,25 +43,33 @@ public class Joystick : MonoBehaviour {
         pingerPos = Input.mousePosition;
         if (Input.GetMouseButtonDown(0))
         {
-            if (!IsInRange(pingerPos)) return;
-            transform.position = pingerPos;
-            _isUsed = true;
+            if (IsInRange(pingerPos))
+            {
+                transform.position = pingerPos;
+                _isUsed = true;
+            }
         }
         if (Input.GetMouseButton(0))
         {
-            if (!_isUsed) return;
-            if (!IsInRange(pingerPos))
+            if (_isUsed)
             {
-                Init();
-                return;
+                if (!IsInRange(pingerPos))
+                {
+                    Init();
+                }
+                else
+                {
+                    _stick.transform.position = FixedPostion(pingerPos);
+                    SetAxis();
+                }
             }
-            _stick.transform.position = FixedPostion(pingerPos);
-            SetAxis();
         }
         if (Input.GetMouseButtonUp(0))
         {
-            if (!IsInRange(pingerPos)) return;
-            Init();
+            if (IsInRange(pingerPos))
+            {
+                Init();
+            }
         }
 #elif UNITY_ANDROID
         for(int i = 0; i < 5; i++)
@@ -69,19 +77,20 @@ public class Joystick : MonoBehaviour {
             pingerPos = Input.GetTouch(i).position;
             if (Input.GetTouch(i).phase == TouchPhase.Began)
             {
-                if (!IsInRange(pingerPos)) continue;
-
-                transform.position = pingerPos;
-                _isUsed = true;
-                _pinger = i;
+                if (IsInRange(pingerPos)) {
+                    transform.position = pingerPos;
+                    _isUsed = true;
+                    _pinger = i;
+                }
             }
             if (Input.GetTouch(i).phase == TouchPhase.Moved || Input.GetTouch(i).phase == TouchPhase.Stationary)
             {
-                if (!_isUsed) continue;
-                if (_pinger != i) continue;
-
-                _stick.transform.position = FixedPostion(pingerPos);
-                SetAxis();
+                if (_isUsed){
+                    if (_pinger == i) {
+                        _stick.transform.position = FixedPostion(pingerPos);
+                        SetAxis();
+                    }
+                }
             }
             if (Input.GetTouch(i).phase == TouchPhase.Ended)
             {

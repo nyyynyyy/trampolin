@@ -43,20 +43,26 @@ public class TapArea : MonoBehaviour {
         pingerPos = Input.mousePosition;
         if (Input.GetMouseButtonDown(0))
         {
-            if (!IsInRange(pingerPos)) return;
-            transform.position = pingerPos;
-            _press = true;
+            if (IsInRange(pingerPos))
+            {
+                transform.position = pingerPos;
+                _press = true;
+            }
         }
         if (Input.GetMouseButton(0))
         {
-            if (IsInRange(pingerPos)) return;
-            Init();
+            if (!IsInRange(pingerPos))
+            {
+                Init();
+            }
         }
         if (Input.GetMouseButtonUp(0))
         {
-            if (!IsInRange(pingerPos)) return;
-            Init();
-            _pressEnd = true;
+            if (IsInRange(pingerPos))
+            {
+                Init();
+                _pressEnd = true;
+            }
         }
 #elif UNITY_ANDROID       
         for(int i = 0; i < 5; i++)
@@ -64,10 +70,11 @@ public class TapArea : MonoBehaviour {
             pingerPos = Input.GetTouch(i).position;
             if(Input.GetTouch(i).phase == TouchPhase.Began)
             {
-                if (!IsInRange(pingerPos)) continue;
-                transform.position = pingerPos;
-                _press = true;
-                _pinger = i;
+                if (IsInRange(pingerPos)) {
+                    transform.position = pingerPos;
+                    _press = true;
+                    _pinger = i;
+                }
             }
             if(Input.GetTouch(i).phase == TouchPhase.Ended)
             {

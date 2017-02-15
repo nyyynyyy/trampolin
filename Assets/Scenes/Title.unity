@@ -139,10 +139,10 @@ MonoBehaviour:
   _roomName: {fileID: 989178505}
   _turningSpeed: 5
   _rooms:
-  - "\uC5F0\uC2B5\uBC29"
-  - "\uC815\uD658\uBC29"
-  - "\uC7AC\uD604\uBC29"
-  - "\uD55C\uC870\uBC29"
+  - "\uACF5\uBD80\uBC29"
+  - "\uC544\uBE60\uBC29"
+  - "\uC560\uAE30\uBC29"
+  - "\uC5C4\uB9C8\uBC29"
 --- !u!1 &115475412
 GameObject:
   m_ObjectHideFlags: 0
